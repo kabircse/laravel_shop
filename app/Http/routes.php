@@ -34,4 +34,5 @@ Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
     Route::get('/admin/home', 'AdminController@index');
+    Route::resource('product', 'ProductController');
 });

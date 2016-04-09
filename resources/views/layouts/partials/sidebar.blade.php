@@ -34,7 +34,13 @@
             <li class="header">HEADER</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>Home</span></a></li>
-            <li><a href="#"><i class='fa fa-link'></i> <span>Products</span></a></li>
+            <li class="treeview">
+                <a href="#"><i class='fa fa-link'></i> <span>Products</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ URL::to('product') }}">Product List</a></li>
+                    <li><a href="{{ URL::to('product/create')}}">Product New</a></li>
+                </ul>
+            </li>
             <li><a href="#"><i class='fa fa-link'></i> <span>Category</span></a></li>
             <li><a href="#"><i class='fa fa-link'></i> <span>Contacts</span></a></li>
             <li class="treeview">

@@ -1,5 +1,5 @@
 @extends('layouts.landing')
 
 @section('htmlheader_title')
-	Home
+	Homef fffffffffffffffffffffffffffffff
 @endsection

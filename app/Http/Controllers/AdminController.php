@@ -33,6 +33,6 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.welcome');
+        return view('admin.welcome',['headerTitle'=>'Add Product','contentTitle'=>'New Product','contentDes'=>'Products Adding New']);
     }
 }
