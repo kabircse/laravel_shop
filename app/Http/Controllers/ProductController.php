@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 use App\Http\Requests;
 use App\Models\Product;
+use Session;
 
 class ProductController extends Controller
 {
@@ -38,7 +40,32 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $inputs = $request->all();
+        $validations = $this->validation($inputs);
+        if(!$validations->fails()){
+            $result = product::create($inputs);
+            if($result){
+                $this->notification('success','Successs');
+                return redirect('product')->with('success','Success');
+            } else{
+                $this->notification('warning','Failed');
+                return redirect('product')->with('success','Failed');                
+            }
+        }
+        else{
+            $this->notification('warning','Validation Failed');
+            return redirect()->back()->withErrors($validations)->withInput($inputs);
+        }
+    }
+    
+    public function validation($inputs){
+        $rules = array(
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'image' => 'required'
+        );
+        return Validator::make($inputs,$rules);
     }
 
     /**
@@ -84,5 +111,10 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    public function notification($alert,$msg){
+        Session::flash('alert',$alert);
+        Session::flash('notification',$msg);        
     }
 }
