@@ -49,7 +49,7 @@ class ProductController extends Controller
                 return redirect('product')->with('success','Success');
             } else{
                 $this->notification('warning','Failed');
-                return redirect('product')->with('success','Failed');                
+                return redirect('product')->with('success','Failed');
             }
         }
         else{
@@ -57,7 +57,7 @@ class ProductController extends Controller
             return redirect()->back()->withErrors($validations)->withInput($inputs);
         }
     }
-    
+
     public function validation($inputs){
         $rules = array(
             'name' => 'required',
@@ -87,7 +87,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        return view('admin.product.productEdit',compact('product'));
     }
 
     /**
@@ -99,7 +100,17 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $inputs = $request->only('name','description','price','image');
+        $validations = $this->validation($inputs);
+        if(!$validations->fails()){
+          $update = Product::where('id',$id)->update($inputs);
+          if($update){
+            $this->notification('success','Success');
+            return redirect('product');
+          }
+        }
+        $this->notification('warning','Failed');
+        return redirect()->back()->withErrors($validations)->withInput($inputs);
     }
 
     /**
@@ -110,11 +121,18 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = Product::where('id',$id)->delete();
+        if($delete){
+          $this->notification('success','Success');
+        } else{
+          $this->notification('warning','Failed');
+        }
+        return redirect()->back();
+
     }
-    
+
     public function notification($alert,$msg){
         Session::flash('alert',$alert);
-        Session::flash('notification',$msg);        
+        Session::flash('notification',$msg);
     }
 }
