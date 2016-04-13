@@ -126,7 +126,6 @@
                             <li class="user-header">
                                     {{ Auth::user()->name }}
                                     <small>Member since Nov. 2012</small>
-                                </p>
                             </li>
                             <!-- Menu Body -->
                             <li class="user-body">

@@ -13,8 +13,8 @@
                         <input type="text" class="form-control" id="name" name="name" value="{{ $product['name'] }}" required>
                         @if ($errors->has('name'))
                             <span class="help-block">
-								<strong>{{ $errors->first('name') }}</strong>
-							</span>
+								                <strong>{{ $errors->first('name') }}</strong>
+							              </span>
                         @endif
                     </div>
                 </div>
@@ -24,8 +24,8 @@
                         <input type="text" class="form-control" id="description" name="description" value="{{ $product['description'] }}" required>
                         @if ($errors->has('description'))
                             <span class="help-block">
-								<strong>{{ $errors->first('description') }}</strong>
-							</span>
+								                  <strong>{{ $errors->first('description') }}</strong>
+							              </span>
                         @endif
                     </div>
                 </div>
@@ -35,8 +35,8 @@
                         <input type="text" class="form-control" id="price" name="price" value="{{ $product['price'] }}" required>
                         @if ($errors->has('price'))
                             <span class="help-block">
-								<strong>{{ $errors->first('price') }}</strong>
-							</span>
+								                <strong>{{ $errors->first('price') }}</strong>
+							              </span>
                         @endif
                     </div>
                 </div>

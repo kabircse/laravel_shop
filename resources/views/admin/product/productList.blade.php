@@ -4,7 +4,7 @@
     <div class="container">
 		<div class="col-md-7 col-md-offset-1">
 			<h2>Product List</h2>
-			<table class="table table-striped table-bordered table-hover table-condensed">
+			<table class="dataTable table table-striped table-bordered table-hover table-condensed">
 			  <thead>
 				<tr>
 				  <th>No</th>
@@ -24,7 +24,7 @@
   					<td>{{ $product->name }}</td>
   					<td>{{ $product->description }}</td>
   					<td>{{ $product->price}}</td>
-  					<td>{{ $product->image}}</td>
+  					<td><img class="img-thumbnail" width="50" height="70" src="{{ asset('/uploads/images/product/'.$product->image) }}"/></td>
   					<td><a clas="btn btn-xs btn-warning" href="{{ route('product.edit',$product->id) }}">Edit</a></td>
   					<td>
               <form action="{{ URL::to('product',$product->id) }}" method="post" onclick="return confirm('Are you sure ?')">
@@ -36,6 +36,9 @@
 				  </tr>
 			    @endforeach
 			</table>
+          <div style="text-align:center" class="no-print">
+              {{ $products->render() }}
+          </div>
 		</div>
 	</div>
 @endsection

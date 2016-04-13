@@ -11,3 +11,9 @@
       Both of these plugins are recommended to enhance the
       user experience. Slimscroll is required when using the
       fixed layout. -->
+<!--Custom JS-->
+<script src="{{ asset('custom/js/custom.js') }}" type="text/javascript"></script>
+<!--DataTable CSS-->
+<link href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+<!--DataTable JS-->
+<script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>

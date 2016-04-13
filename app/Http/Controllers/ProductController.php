@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(15);
+        $products = Product::paginate(5);
         return view('admin.product.productList',compact('products'));
     }
 
@@ -106,8 +106,10 @@ class ProductController extends Controller
     {
         $inputs = $request->only('name','description','price','image');
         $validations = $this->validation($inputs);
+        $fileName = $this->upload_image($inputs['image']);
+        $update_data = ['name'=>$inputs['name'],'description'=>$inputs['description'],'price'=>$inputs['price'],'image'=>$fileName];
         if(!$validations->fails()){
-          $update = Product::where('id',$id)->update($inputs);
+          $update = Product::where('id',$id)->update($update_data);
           if($update){
             $this->notification('success','Success');
             return redirect('product');
@@ -139,9 +141,10 @@ class ProductController extends Controller
         Session::flash('alert',$alert);
         Session::flash('notification',$msg);
     }
-    
-    public function upload_image($image){
-        if (Input::file('image')->isValid()){
+
+    public function upload_image(){
+        if (Input::file('image')->isValid())
+        {
             $destinationPath = 'uploads/images/product';
             $extension = Input::file('image')->getClientOriginalExtension();
             $fileName = date('Y-m-d_G-i-s').'.'.$extension;

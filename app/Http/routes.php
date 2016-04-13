@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('shop.welcome');
+    $products = DB::table('products')->paginate(10);
+    return view('shop.welcome',['products'=>$products]);
 });
 
 /*

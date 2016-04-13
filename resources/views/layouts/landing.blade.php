@@ -8,9 +8,9 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
         @include('layouts.public_partials.p_htmlheader')
     @show
 
-    
+
     <body class="skin-blue sidebar-mini">
-    <div class="wrapper">        
+    <div class="wrapper">
     <!-- Fixed navbar -->
     <div id="navigation" class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -40,7 +40,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
             </div><!--/.nav-collapse -->
         </div>
     </div>
-        
+
         <section id="home" name="home"></section>
         <div id="headerwrap">
             <div class="container">
@@ -49,32 +49,21 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
                        <!-- sidebar -->
                        @include('layouts.public_partials.p_sidebar')
                     </div>
-                    <div class="col-lg-10">                
+                    <div class="col-lg-10">
                         @yield('main-content');
                     </div>
                 </div>
             </div> <!--/ .container -->
         </div><!--/ #headerwrap -->
-    
+
         <div id="c"><!-- Main Footer -->
             @include('layouts.partials.footer')
         </div>
-    
+
         @section('scripts')
             @include('layouts.public_partials.p_scripts')
         @show
 
         </div><!-- ./wrapper -->
     </body>
-<style>
-    .carousel .item {
-        height: 250px;
-    }
-    .item img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        min-height: 250px;
-    }
-</style>
 </html>
