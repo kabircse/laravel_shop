@@ -33,16 +33,22 @@
         <ul class="sidebar-menu">
             <li class="header">HEADER</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>Home</span></a></li>
+            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-home'></i> <span>Home</span></a></li>
             <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>Products</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class='fa fa-database'></i> <span>Products</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="{{ URL::to('product') }}">Product List</a></li>
                     <li><a href="{{ URL::to('product/create')}}">Product New</a></li>
                 </ul>
             </li>
-            <li><a href="#"><i class='fa fa-link'></i> <span>Category</span></a></li>
-            <li><a href="#"><i class='fa fa-link'></i> <span>Contacts</span></a></li>
+            <li class="treeview">
+                <a href="#"><i class='fa fa-tags'></i> <span>Category</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ URL::to('category') }}">Category List</a></li>
+                    <li><a href="{{ URL::to('category/create')}}">Category New</a></li>
+                </ul>
+            </li>
+            <li><a href="#"><i class='fa fa-file'></i> <span>Orders</span></a></li>
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Requests;
 use App\Models\Product;
 use Session;
+use Illuminate\Support\Facades\Input;
 
 class ProductController extends Controller
 {
@@ -41,9 +42,12 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $inputs = $request->all();
+        //dd($inputs['image']);
         $validations = $this->validation($inputs);
         if(!$validations->fails()){
-            $result = product::create($inputs);
+            $fileName = $this->upload_image($inputs['image']);
+            $insert_data = ['name'=>$inputs['name'],'description'=>$inputs['description'],'price'=>$inputs['price'],'image'=>$fileName];
+            $result = product::create($insert_data);
             if($result){
                 $this->notification('success','Successs');
                 return redirect('product')->with('success','Success');
@@ -134,5 +138,18 @@ class ProductController extends Controller
     public function notification($alert,$msg){
         Session::flash('alert',$alert);
         Session::flash('notification',$msg);
+    }
+    
+    public function upload_image($image){
+        if (Input::file('image')->isValid()){
+            $destinationPath = 'uploads/images/product';
+            $extension = Input::file('image')->getClientOriginalExtension();
+            $fileName = date('Y-m-d_G-i-s').'.'.$extension;
+            Input::file('image')->move($destinationPath,$fileName);
+            return $fileName;
+        }
+        else{
+            return false;
+        }
     }
 }

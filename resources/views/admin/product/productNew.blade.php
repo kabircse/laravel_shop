@@ -4,7 +4,7 @@
     <div class="container">
 		<div class="col-md-5 col-md-offset-1">
 			<h2>New Product</h2>
-			<form class="form-horizontal" role="form" method="post" action="{{ URL::to('product')}}">
+			<form class="form-horizontal" role="form" method="post" action="{{ URL::to('product')}}" enctype="multipart/form-data">
 				{{ csrf_field() }}
 				<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 				  <label class="control-label col-sm-2" for="name">Name:</label>
