@@ -13,7 +13,7 @@
         <div class="col-xs-10 col-sm-3">
           <a class="thumbnail" href="#"><img width="235" height="100" src="{{ asset('/uploads/images/product/'.$product->image) }}" class="img-responsive img-thumbnail"></a>
             <div class = "caption" style="position:relative; margin-top:75%">
-                <a href = "#" class = "btn btn-primary" role = "button">
+                <a href = "{{ URL::to('home/show',$product->id) }}" class = "btn btn-primary" role = "button">
                      {{ $product->name }} Tk. {{ $product->price }}
                 </a>
           </div>

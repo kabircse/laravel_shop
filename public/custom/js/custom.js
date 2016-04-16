@@ -1,5 +1,5 @@
 $(window).load(function(){
-    $('.alert_msg').delay(2500).hide('slow');
+    $('.alert_msg').delay(2700).hide('slow');
 });
 $(function(){
     /*DataTable*/

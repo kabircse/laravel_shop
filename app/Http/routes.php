@@ -11,11 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    $products = DB::table('products')->paginate(10);
-    return view('shop.welcome',['products'=>$products]);
-});
-
+Route::get('/','HomeController@index');
+Route::controller('home','HomeController');
+Route::controller('cart','CartController');
 /*
 |--------------------------------------------------------------------------
 | Application Routes

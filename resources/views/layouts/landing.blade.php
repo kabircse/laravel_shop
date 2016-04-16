@@ -20,7 +20,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><b>adminlte-laravel</b></a>
+                <a class="navbar-brand" href="{{ url('/') }}"><b>Laravel Shop</b></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -33,6 +33,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
+                        <li><a href="{{ url('cart/index') }}"><i class="fa fa-shopping-cart"></i><span>Cart</span></a></li>
                     @else
                         <li><a href="admin/home">{{ Auth::user()->name }}</a></li>
                     @endif
