@@ -13,7 +13,6 @@
 
 Route::get('/','HomeController@index');
 Route::controller('home','HomeController');
-Route::controller('cart','CartController');
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -25,13 +24,10 @@ Route::controller('cart','CartController');
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
-
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
     Route::get('/admin/home', 'AdminController@index');
     Route::resource('product', 'ProductController');
+    Route::controller('cart','CartController');
 });

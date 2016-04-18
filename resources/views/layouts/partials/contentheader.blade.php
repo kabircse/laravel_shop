@@ -9,6 +9,4 @@
         <li class="active">Products</li>
     </ol>
 </section>
-@if(Session::has('notification'))
-  <span class="text-center alert alert-{{ Session::get('alert') }} alert_msg">{{ Session::get('notification') }}</span>
-@endif
+@include('layouts.public_partials.alert_modal')

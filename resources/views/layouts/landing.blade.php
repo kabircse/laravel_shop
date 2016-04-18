@@ -51,6 +51,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
                        @include('layouts.public_partials.p_sidebar')
                     </div>
                     <div class="col-lg-10">
+                        @include('layouts.public_partials.alert_modal')
                         @yield('main-content');
                     </div>
                 </div>
@@ -62,7 +63,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
         </div>
 
         @section('scripts')
-            @include('layouts.public_partials.p_scripts')
+            @include('layouts.partials.scripts')
         @show
 
         </div><!-- ./wrapper -->

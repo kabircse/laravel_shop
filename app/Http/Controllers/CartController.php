@@ -13,9 +13,9 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getIndex()
     {
-        //
+        dd('ok...');
     }
 
     /**
@@ -36,10 +36,10 @@ class CartController extends Controller
      */
     public function getStore(Request $request)
     {
-      //if($request->isMethod('post')) {      
-        $id = '66';//$request->get('product_id');      
+      if($request->isMethod('get')) {
+        $id = 6;//$request->get('product_id');
         return response()->json(['data'=>$id]);
-      //}
+      }
     }
 
     /**
@@ -86,4 +86,19 @@ class CartController extends Controller
     {
         //
     }
+
+   public function getAdd(Request $request)
+   {
+     if($request->ajax()) {
+       $id = $request->get('product_id');
+       if($request->session()->has('product_ids')){
+          $request->session()->push('product_ids',$id);
+       } else {
+         $request->session()->push('product_ids',array($id));
+       }
+       return response()->json(['status'=>'Success']);
+     } else {
+       echo 'Wrong request';
+     }
+   }
 }
