@@ -9,7 +9,7 @@
 	    <!-- Modal content-->
 	    <div class="modal-content">
 	      <div class="modal-body">
-	        <p class="alert-msg btn btn-info btn-{{ Session::get('alert') }}">{{ Session::get('notification') }}</p>
+	        <p class="alert-msg btn btn-info btn-{{ Session::get('alert') }}">{{ Session::get('notification') }} !!</p>
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 	      </div>
 	    </div>

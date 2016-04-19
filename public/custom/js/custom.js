@@ -11,7 +11,7 @@ $(function(){
     });
 });
 
-function hide_modal(){
+function modal_hide(){
   setTimeout(function(){$('#myModal').modal('hide')},3500);
 }
 function modal_trigger(){
@@ -20,8 +20,12 @@ function modal_trigger(){
 }
 
 function window_load(){
- $(window).load(function(){
-    modal_trigger();//function call
-    hide_modal();
-});  
+  $(window).load(function(){
+    modal_trigger_hide();
+  });
+}
+
+function modal_trigger_hide(){
+     modal_trigger();
+     modal_hide();
 }

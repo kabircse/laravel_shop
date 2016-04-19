@@ -58,24 +58,19 @@
 
 						</div>
 					<div class="tab-pane fade" id="service-two">
-
 						<section class="container">
-                            <h3>Product Info:</h3>
-								<li>It supports the latest ATX12V v2.3 standard and is backward compatible with ATX12V 2.2 and ATX12V 2.01 systems</li>
-								<li>An ultra-quiet 140mm double ball-bearing fan delivers great airflow at an very low noise level by varying fan speed in response to temperature</li>
-								<li>80Plus certified to deliver 80% efficiency or higher at normal load conditions (20% to 100% load)</li>
-								<li>0.99 Active Power Factor Correction provides clean and reliable power</li>
+                <h3>Review Form</h3>
+								<div class="col-lg-7">
+				            <form role="form" action="#" method="post" enctype="plain">
+				                <div class="form-group">
+				                    <label>Your Text</label>
+				                    <textarea class="form-control" name="Message" rows="4" cols="4"></textarea>
+				                </div>
+				                <br>
+				                <button type="submit" class="btn btn-large btn-success">SUBMIT</button>
+				            </form>
+				        </div>
 						</section>
-					</div>
-					<div class="tab-pane fade" id="service-three">
-                            <h3>Review</h3>
-                        <li>Extra long fully-sleeved cables support full tower chassis</li>
-								<li>A three year warranty and lifetime access to Corsair’s legendary technical support and customer service</li>
-								<li>Over Current/Voltage/Power Protection, Under Voltage Protection and Short Circuit Protection provide complete component safety</li>
-								<li>Dimensions: 150mm(W) x 86mm(H) x 160mm(L)</li>
-								<li>MTBF: 100,000 hours</li>
-								<li>Safety Approvals: UL, CUL, CE, CB, FCC Class B, TÜV, CCC, C-tick</li>
-
 					</div>
 				</div>
 				<hr>
@@ -239,20 +234,18 @@
 						$.get(url,{product_id:product_id},function(data){
 							status = data.status;
 							$('.alert-msg').empty();
-							$('.alert-msg').addClass('btn-alert').append(status);							
-					    modal_trigger();//function call
-					    hide_modal();
+							$('.alert-msg').addClass('btn-alert').append(status);
+								modal_trigger_hide();
 						});
         });
 				$('.cart-addwish').on('click',function(){
 						var product_id = $(this).attr('id');
-						var url = "<?php echo url('cart/addwish'); ?>";
+						var url = "<?php echo url('wish/store'); ?>";
 						$.get(url,{product_id:product_id},function(data){
 							status = data.status;
 							$('.alert-msg').empty();
-							$('.alert-msg').addClass('btn-alert').append(status);							
-					    modal_trigger();//function call
-					    hide_modal();
+							$('.alert-msg').addClass('btn-alert').append(status);
+								modal_trigger_hide();
 						});
         });
 			});

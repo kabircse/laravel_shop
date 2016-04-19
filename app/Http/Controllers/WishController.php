@@ -5,18 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Models\Wish_list;
 use Auth;
-use DB;
-class CartController extends Controller
+class WishController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function getIndex()
+    public function index()
     {
-        dd('ok...');
+        //
     }
 
     /**
@@ -37,10 +37,18 @@ class CartController extends Controller
      */
     public function getStore(Request $request)
     {
-      if($request->isMethod('get')) {
-        $id = 6;//$request->get('product_id');
-        return response()->json(['data'=>$id]);
-      }
+        $product_id = $request->get('product_id');
+        $user_id = Auth::user()->id;
+        if($user_id){
+            $product = Wish_list::firstOrCreate(['product_id'=>$product_id,'user_id'=>$user_id]);
+            $product->save();
+            if($product->wasRecentlyCreated){
+                return response()->json(['status'=>'Success']);
+            } else
+              return response()->json(['status'=>'Already added']);
+        } else {
+            return response()->json(['status'=>'Login for wish list']);
+        }
     }
 
     /**
@@ -87,21 +95,4 @@ class CartController extends Controller
     {
         //
     }
-
-   public function getAdd(Request $request)
-   {
-     if($request->ajax()) {
-       $id = $request->get('product_id');
-       if($request->session()->has('product_ids')){
-          $request->session()->push('product_ids',$id);
-       } else {
-         $request->session()->push('product_ids',array($id));
-       }
-       return response()->json(['status'=>'Success']);
-     } else {
-       echo 'Wrong request';
-     }
-   }
-
-
 }

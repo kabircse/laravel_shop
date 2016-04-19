@@ -27,7 +27,8 @@ Route::controller('home','HomeController');
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
-    Route::get('/admin/home', 'AdminController@index');
+    Route::get('admin/home', 'AdminController@index');
     Route::resource('product', 'ProductController');
     Route::controller('cart','CartController');
+    Route::controller('wish','WishController');
 });
