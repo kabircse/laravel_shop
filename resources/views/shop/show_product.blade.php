@@ -27,12 +27,10 @@
 							Add to cart
 						</button>
 					</div>
-					<div class="btn-group cart-wishlist" id="{{ $product->id }}">
+					<div class="btn-group cart-addwish" id="{{ $product->id }}">
 						<button type="button" class="btn btn-danger">
 							Add to wishlist
 						</button>
-					{{ Session::get('alert') }}
-					{{ Session::get('notification') }}
 					</div>
 				</div>
 			</div>
@@ -241,7 +239,18 @@
 						$.get(url,{product_id:product_id},function(data){
 							status = data.status;
 							$('.alert-msg').empty();
-							$('.alert-msg').append('Success');
+							$('.alert-msg').addClass('btn-alert').append(status);							
+					    modal_trigger();//function call
+					    hide_modal();
+						});
+        });
+				$('.cart-addwish').on('click',function(){
+						var product_id = $(this).attr('id');
+						var url = "<?php echo url('cart/addwish'); ?>";
+						$.get(url,{product_id:product_id},function(data){
+							status = data.status;
+							$('.alert-msg').empty();
+							$('.alert-msg').addClass('btn-alert').append(status);							
 					    modal_trigger();//function call
 					    hide_modal();
 						});

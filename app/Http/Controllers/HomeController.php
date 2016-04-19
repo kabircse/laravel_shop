@@ -14,7 +14,7 @@ class HomeController extends Controller
         return view('shop.welcome',['products'=>$products]);
     }
     public function getShow($id){
-        $this->notification('success','Success');
+        //$this->notification('success','Success');
         $product = DB::table('products')->where('id',$id)->first();
         return view('shop.show_product',['product'=>$product]);
     }

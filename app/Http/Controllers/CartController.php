@@ -101,4 +101,15 @@ class CartController extends Controller
        echo 'Wrong request';
      }
    }
+   
+   public function getAddwish(Request $request)
+   {
+     if($request->ajax()) {
+       $id = $request->get('product_id');
+       
+       return response()->json(['status'=>'Success']);
+     } else {
+       echo 'Wrong request';
+     }
+   }
 }
