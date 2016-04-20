@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Auth;
 use DB;
+use App\Models\Product;
 class CartController extends Controller
 {
     /**
@@ -14,9 +15,11 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getIndex()
+    public function getIndex(Request $request)
     {
-        dd('ok...');
+        $product_ids = $request->session()->get('product_ids');
+        $products = Product::whereIn('id',$product_ids)->select('id','name','price','image')->get();
+        return view('shop.cart_items',['products'=>$products]);
     }
 
     /**
@@ -90,18 +93,34 @@ class CartController extends Controller
 
    public function getAdd(Request $request)
    {
-     if($request->ajax()) {
-       $id = $request->get('product_id');
-       if($request->session()->has('product_ids')){
-          $request->session()->push('product_ids',$id);
-       } else {
-         $request->session()->push('product_ids',array($id));
-       }
+     if($request->ajax())
+      {
+       $this->add_to_cart($request);
        return response()->json(['status'=>'Success']);
      } else {
        echo 'Wrong request';
      }
    }
+
+   public function add_to_cart($request){
+     $id = $request->get('product_id');
+     if($request->session()->has('product_ids')){
+        return $request->session()->push('product_ids',$id);
+     } else {
+       return $request->session()->push('product_ids',$id);
+     }
+   }
+
+   public function getAddbuy(Request $request)
+   {
+        if($request->ajax())
+         {
+          $this->add_to_cart($request);
+          //redirect();
+        } else {
+          echo 'Wrong request';
+        }
+    }
 
 
 }

@@ -32,6 +32,11 @@
 							Add to wishlist
 						</button>
 					</div>
+					<div class="btn-group cart-buy-now" id="{{ $product->id }}">
+						<button type="button" class="btn btn-success">
+							Buy now
+						</button>
+					</div>
 				</div>
 			</div>
 		<div class="container-fluid">
@@ -241,6 +246,16 @@
 				$('.cart-addwish').on('click',function(){
 						var product_id = $(this).attr('id');
 						var url = "<?php echo url('wish/store'); ?>";
+						$.get(url,{product_id:product_id},function(data){
+							status = data.status;
+							$('.alert-msg').empty();
+							$('.alert-msg').addClass('btn-alert').append(status);
+								modal_trigger_hide();
+						});
+        });
+				$('.cart-buy-now').on('click',function(){
+						var product_id = $(this).attr('id');
+						var url = "<?php echo url('cart/addbuy'); ?>";
 						$.get(url,{product_id:product_id},function(data){
 							status = data.status;
 							$('.alert-msg').empty();
