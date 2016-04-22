@@ -31,4 +31,5 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('product', 'ProductController');
     Route::controller('cart','CartController');
     Route::controller('wish','WishController');
+    Route::controller('order','OrderController');
 });

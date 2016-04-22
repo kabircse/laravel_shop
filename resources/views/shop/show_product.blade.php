@@ -32,10 +32,8 @@
 							Add to wishlist
 						</button>
 					</div>
-					<div class="btn-group cart-buy-now" id="{{ $product->id }}">
-						<button type="button" class="btn btn-success">
-							Buy now
-						</button>
+					<div class="btn-group cart-buy" id="{{ $product->id }}">
+							<a class="btn btn-success" href="{{ URL('cart/addbuy?product_id='.$product->id) }}">Buy now</a>
 					</div>
 				</div>
 			</div>
@@ -82,8 +80,6 @@
 			</div>
 		</div>
 	</div>
-
-
 
         <div class="col-md-10">
             <br/>
@@ -253,16 +249,7 @@
 								modal_trigger_hide();
 						});
         });
-				$('.cart-buy-now').on('click',function(){
-						var product_id = $(this).attr('id');
-						var url = "<?php echo url('cart/addbuy'); ?>";
-						$.get(url,{product_id:product_id},function(data){
-							status = data.status;
-							$('.alert-msg').empty();
-							$('.alert-msg').addClass('btn-alert').append(status);
-								modal_trigger_hide();
-						});
-        });
+				
 			});
 	</script>
 

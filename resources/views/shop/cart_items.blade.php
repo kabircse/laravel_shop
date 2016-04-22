@@ -9,6 +9,7 @@
 				<div class="col-md-10">
             <div class="product-info"><br />
   							<h2 class="text text-info">Products in cart</h2><br />
+								<form action="#">
 								  <table class="table table-hover table-bordered table-condensed">
 								    <thead>
 								      <tr>
@@ -18,37 +19,43 @@
 								        <th class="text-center">Price</th>
 								        <th class="text-center">Quantity</th>
 								        <th class="text-center">Sub Total</th>
+								        <th class="text-center">Delete</th>
 								      </tr>
 								    </thead>
-								    <tbody>
-											<?php $i = 1;
+								    <tbody class="product-form">
+											<?php $i = 1; $price = 0;
 											foreach ($products as $product):?>
 									      <tr>
 													<td class="text-center">{{ $i++ }}</td>
 									        <td class="text-center">{{ $product->name }}</td>
 									        <td class="text-center"><img height="50" src="{{ asset('uploads/images/product/'.$product->image) }}"</img></td>
-									        <td class="text-center">{{ $product->price }}</td>
-									        <td class="col-xs-2"><input type="number" name="qty" class="qty" value="1"></td>
-									        <td class="col-xs-2"><input type="text" name="total" class="sub-total" value="" readonly></td>
+									        <td class="text-center price">{{ $product->price }}</td>
+									        <td class="col-xs-2"><input type="number" name="qty[]" class="qty" value="1" required></td>
+									        <td class="col-xs-2"><input type="text" name="sub_total" class="sub-total" value="{{$product->price}}" readonly></td>
+													<td class="col-xs-1 delete-tr"><a href="#" class="btn-xs btn-danger">x</a></td>
 									      </tr>
-											<?php endforeach; ?>
+											<?php
+												$price = $price+$product->price;												
+											endforeach; ?>
 									      <tr class="info">
 													<td class="text-center"></td>
-													<td class="text-center">Total</td>
+													<td class="text-center"><strong>Total</strong></td>
 													<td class="text-center"></td>
 													<td class="text-center"></td>
-													<td class="text-center toal-qty"><strong>4</strong></td>
-													<td class="text-center total-cost"><strong>452.00</strong></td>
+									        <td class="col-xs-2"><input type="number" name="total_qty" class="total-qty" value="{{$i-1}}" readonly></td>
+									        <td class="col-xs-2"><input type="text" name="sub_total" class="total" value="{{$price}}" readonly></td>
+													<td></td>
 												</tr>
 								    </tbody>
 								  </table>
 									<div class="col-sm-offset-9">
 											<div class="btn-group buy-product" id="">
-												<a href="#" class="btn btn-info">
-													Buy now
-												</a>
+													<button class="btn btn-info buy">
+															Buy
+													</button>
 											</div>
 									</div>
+								</form>
 									<br />
 									<br />
 									<br />
@@ -98,7 +105,7 @@
 				border: 0px;
 				border-radius: 1px;
 			}
-			.qty,.sub-total{
+			.qty,.sub-total,.total-qty,.total{
 				width: 50%;
 			}
   </style>
@@ -124,6 +131,41 @@
 								modal_trigger_hide();
 						});
         });
+				$('.product-form').on('change','.qty',function(){
+						var tr = $(this).parent().parent();//$(this).closest('tr');
+						var price = tr.find('.price').text();
+						var qty = tr.find('.qty').val();
+						var sub_total = parseFloat(price)*qty;
+						tr.find('.sub-total').val(sub_total);
+						calculate_total();
+				});
+				$('.buy').on('click',function(){
+						if ($('.total-qty').val()<=0 || $('.total').val()<=0) {
+							$('.alert-msg').empty();
+							$('.alert-msg').addClass('btn-alert').append('Fillup the input correctly');
+							modal_trigger_hide();
+							return false;
+            } else {
+							$('form').submit();
+						}
+				});
+				$('.product-form').on('click','.delete-tr',function(){
+						$(this).parent().remove();//td<tr  ->remove
+						calculate_total();
+				});
+				
+				function calculate_total() {
+					total_qty = 0;
+					total = 0;
+          $('.qty').each(function(){
+							total_qty = parseFloat(total_qty) + parseFloat($(this).val());							
+					});
+					$('.total-qty').val(total_qty);
+          $('.sub-total').each(function(){
+							total = parseFloat(total) + parseFloat($(this).val());							
+					});
+					$('.total').val(total);
+        }
 			});
 	</script>
 
