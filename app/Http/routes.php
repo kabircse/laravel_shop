@@ -11,8 +11,6 @@
 |
 */
 
-Route::get('/','HomeController@index');
-Route::controller('home','HomeController');
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -26,10 +24,13 @@ Route::controller('home','HomeController');
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
+    Route::get('/','HomeController@getIndex');
+    Route::controller('home','HomeController');
 
     Route::get('admin/home', 'AdminController@index');
     Route::resource('product', 'ProductController');
     Route::controller('cart','CartController');
     Route::controller('wish','WishController');
     Route::controller('order','OrderController');
+    Route::controller('category','CategoryController');
 });

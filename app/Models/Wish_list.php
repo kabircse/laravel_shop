@@ -12,5 +12,9 @@ class wish_list extends Model
     public function setUpdatedAt($value){
         ;
     }
+    
+    public function product(){
+        return $this->belongsTo('App\Models\Product');
+    }
 
 }

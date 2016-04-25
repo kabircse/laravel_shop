@@ -5,15 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Models\Order;
-class OrderController extends Controller
+
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function getIndex()
+    public function index()
     {
         //
     }
@@ -23,20 +23,9 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getCreate(Request $request)
+    public function create()
     {
-        $hashSecretWord = 'tango'; //2Checkout Secret Word
-        $hashSid = 901315596; //2Checkout account number
-        $hashTotal = '1.00'; //Sale total to validate against
-        $hashOrder = $_REQUEST['order_number']; //2Checkout Order Number
-        $StringToHash = strtoupper(md5($hashSecretWord . $hashSid . $hashOrder . $hashTotal));
-        if ($StringToHash != $_REQUEST['key']) {
-          $result = 'Fail - Hash Mismatch';
-        } else {
-          $result = 'Success - Hash Matched';
-        }
-        echo $result;
-        dd($request->session()->get('product_ids'));
+        //
     }
 
     /**

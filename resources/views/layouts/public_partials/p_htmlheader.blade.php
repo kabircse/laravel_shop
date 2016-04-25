@@ -5,7 +5,7 @@
     <meta name="description" content="Pratt - Free Bootstrap 3 Theme">
     <meta name="author" content="Alvarez.is - BlackTie.co">
 
-    <title>Acacha AdminLTE Laravel package template Landing page - Using Pratt</title>
+    <title>Laravel Shop</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet">

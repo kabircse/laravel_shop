@@ -9,7 +9,7 @@ use DB;
 use Session;
 class HomeController extends Controller
 {
-    public function index(){
+    public function getIndex(){
         $products = DB::table('products')->paginate(10);
         return view('shop.welcome',['products'=>$products]);
     }

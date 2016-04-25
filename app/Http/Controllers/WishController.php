@@ -14,9 +14,11 @@ class WishController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getIndex(Request $request)
     {
-        //
+        $products = Wish_list::product()->select('id','name','price','image')->get();
+        return view('shop.wish_lists',['products'=>$products]);
+        
     }
 
     /**
