@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Wish_list;
 use Auth;
+use DB;
 class WishController extends Controller
 {
     /**
@@ -16,7 +17,14 @@ class WishController extends Controller
      */
     public function getIndex(Request $request)
     {
-        $products = Wish_list::product()->select('id','name','price','image')->get();
+        $user_id = Auth::user()->id;
+        //$products = Wish_list::find(2)->product;
+        //dd($products);
+        $products = DB::table('wish_lists')
+            ->join('products','products.id','=','wish_lists.product_id')
+            ->select('products.id','name','price','image')
+            ->where('wish_lists.user_id','=',$user_id)
+            ->get();
         return view('shop.wish_lists',['products'=>$products]);
         
     }
@@ -40,8 +48,8 @@ class WishController extends Controller
     public function getStore(Request $request)
     {
         $product_id = $request->get('product_id');
-        $user_id = Auth::user()->id;
-        if($user_id){
+        if(Auth::check()){          
+            $user_id = Auth::user()->id;
             $product = Wish_list::firstOrCreate(['product_id'=>$product_id,'user_id'=>$user_id]);
             $product->save();
             if($product->wasRecentlyCreated){

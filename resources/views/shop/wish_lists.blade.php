@@ -8,7 +8,7 @@
     <div class="container">
 				<div class="col-md-10">
             <div class="product-info"><br />
-  							<h2 class="text text-info">Products in cart</h2><br />
+  							<h2 class="text text-info">Your Wish Items</h2><br />
 								<form action='https://sandbox.2checkout.com/checkout/purchase' method='post'>
 										<input type='hidden' name='sid' value='901315596' />
 										<input type='hidden' name='mode' value='2CO' />
